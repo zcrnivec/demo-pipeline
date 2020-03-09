@@ -1,36 +1,29 @@
 pipeline {
-
-  environment {
-    registry = "zcrnivec/sample-app"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
-
   agent any
-
   stages {
-
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/zcrnivec/demo-pipeline.git'
+        git(url: 'https://github.com/zcrnivec/demo-pipeline.git', credentialsId: 'github')
       }
     }
 
     stage('Build image') {
-      steps{
+      steps {
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+
       }
     }
 
     stage('Push Image') {
-      steps{
+      steps {
         script {
           docker.withRegistry( "", registryCredential) {
             dockerImage.push()
           }
         }
+
       }
     }
 
@@ -39,15 +32,20 @@ pipeline {
         script {
           kubernetesDeploy(configs: "sample-app.yaml", kubeconfigId: "kubeconfig")
         }
+
       }
     }
 
     stage('Remove Unused docker image') {
-      steps{
+      steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
 
   }
-
+  environment {
+    registry = 'zcrnivec/sample-app'
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
 }
