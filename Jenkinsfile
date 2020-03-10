@@ -6,7 +6,7 @@ pipeline {
   }
 
   agent any
-  
+
   stages {
     stage('Cloning Git') {
       steps {
@@ -37,6 +37,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/' sample-app.yaml"
+        
         script {
           kubernetesDeploy(configs: "sample-app.yaml", kubeconfigId: "kubeconfig")
         }
