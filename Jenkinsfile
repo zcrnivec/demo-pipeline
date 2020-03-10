@@ -1,5 +1,12 @@
 pipeline {
+  environment {
+    registry = 'zcrnivec/sample-app'
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+
   agent any
+  
   stages {
     stage('Cloning Git') {
       steps {
@@ -29,6 +36,7 @@ pipeline {
 
     stage('Deploy App') {
       steps {
+        sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/' sample-app.yaml"
         script {
           kubernetesDeploy(configs: "sample-app.yaml", kubeconfigId: "kubeconfig")
         }
@@ -42,10 +50,5 @@ pipeline {
       }
     }
 
-  }
-  environment {
-    registry = 'zcrnivec/sample-app'
-    registryCredential = 'dockerhub'
-    dockerImage = ''
   }
 }

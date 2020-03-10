@@ -16,7 +16,7 @@ spec:
         app: sample-app
     spec:
       containers:
-      - image: zcrnivec/sample-app:1
+      - image: zcrnivec/sample-app:test
         imagePullPolicy: Always
         name: sample-app
 
