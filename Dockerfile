@@ -2,7 +2,6 @@ FROM python:3.7.3-alpine
 
 COPY ./static /home/app/
 COPY ./templates /home/app/
-COPY ./index.html /home/app/.
 COPY ./sample_app.py /home/app/.
 
 WORKDIR /home/app/
