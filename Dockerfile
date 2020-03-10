@@ -1,6 +1,14 @@
 FROM python:3.7.3-alpine
-WORKDIR /home/app/
+
+COPY ./static /home/app/
+COPY ./templates /home/app/
+COPY ./index.html /home/app/.
 COPY ./sample_app.py /home/app/.
+
+WORKDIR /home/app/
+
+EXPOSE 8888/tcp
+
 RUN pip install flask
+
 CMD python /home/app/sample_app.py
-EXPOSE 8888
