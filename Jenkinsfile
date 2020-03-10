@@ -37,7 +37,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/' sample-app.yaml"
-        
+
         script {
           kubernetesDeploy(configs: "sample-app.yaml", kubeconfigId: "kubeconfig")
         }
@@ -48,6 +48,14 @@ pipeline {
     stage('Remove Unused docker image') {
       steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+
+    post {
+      always {
+        echo "${currentBuild.fullDisplayName}"
+        echo "${currentBuild.result}"
+        echo "reporting...}"
       }
     }
 
