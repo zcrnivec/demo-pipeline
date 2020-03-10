@@ -51,13 +51,13 @@ pipeline {
       }
     }
 
-    post {
+  }
+
+  post {
       always {
         echo "${currentBuild.fullDisplayName}"
         echo "${currentBuild.result}"
         echo "reporting...}"
       }
-    }
-
   }
 }
