@@ -3,6 +3,9 @@ pipeline {
     registry = 'zcrnivec/sample-app'
     registryCredential = 'dockerhub'
     dockerImage = ''
+    WEBEX_TEAMS_ACCESS_TOKEN = credentials('WEBEX_TEAMS_TOKEN')
+    WEBEX_TEAMS_ROOM_ID = credentials('WEBEX_TEAMS_ROOM_ID')
+    JENKINS_TOKEN = credentials('JENKINS_TOKEN')
   }
 
   agent any
@@ -58,6 +61,15 @@ pipeline {
         echo "${currentBuild.fullDisplayName}"
         echo "${currentBuild.result}"
         echo "reporting...}"
+      }
+
+      success {
+          echo 'Success'
+          sh "python send_message.py '${env.BRANCH_NAME}' '${currentBuild.fullDisplayName}' '${BUILD_URL}/logText/progressiveText?start=0' 'SUCCESSFUL' '${BUILD_NUMBER}'"
+      }
+      failure {
+          echo 'Failed'
+          sh "python send_message.py '${env.BRANCH_NAME}' '${currentBuild.fullDisplayName}' '${BUILD_URL}/logText/progressiveText?start=0' 'FAILED' '${BUILD_NUMBER}'"
       }
   }
 }
