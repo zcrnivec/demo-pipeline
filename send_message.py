@@ -31,7 +31,7 @@ m = MultipartEncoder(
       'roomId': WEBEX_TEAMS_ROOM_ID,
       'markdown': f'## A new CI/CD build in {sys.argv[1]} branch has just finished!\n' + \
                   f' --- \n' + \
-                  f'* **BUILD:** {sys.argv[2]}\n---\n' + \
+                  f'* **BUILD:** {sys.argv[2]}\n' + \
                   f'* **LOGS:** Click [HERE]({sys.argv[3]}) or review the attached PDF.\n' + \
                   f'* **STATUS:** {sys.argv[4]}.',
       'files': ("buildresults_" + sys.argv[5] + ".pdf", open("buildresults_" + sys.argv[5] + ".pdf", 'rb'), 'application/pdf')
