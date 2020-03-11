@@ -29,8 +29,10 @@ pdf.output("buildresults_" + sys.argv[5] + ".pdf")
 m = MultipartEncoder(
     {
       'roomId': WEBEX_TEAMS_ROOM_ID,
-      'text': 'A new ' + sys.argv[1] + ' CI/CD build just finished!\n' + sys.argv[2] + \
-              '\nFor logs visit ' + sys.argv[3] + ' or review the atached PDF\nStatus: ' + sys.argv[4] + '.',
+      'markdown': f'## A new CI/CD build in {sys.argv[1]} branch has just finished!\n' + \
+                  f'Build: {sys.argv[2]}\n---\n' + \
+                  f'* For Logs click [here]({sys.argv[3]}) or review the attached PDF.\n' + \
+                  f'* STATUS: **{sys.argv[4]}**.',
       'files': ("buildresults_" + sys.argv[5] + ".pdf", open("buildresults_" + sys.argv[5] + ".pdf", 'rb'), 'application/pdf')
     }
 )
@@ -45,6 +47,4 @@ message = requests.post(
 
 #Send final result code as message for Jenkins to catch in the build logs
 print(message)
-
-
 
