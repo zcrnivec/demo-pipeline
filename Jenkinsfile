@@ -70,6 +70,7 @@ pipeline {
       }
       failure {
           echo 'Failed'
+          sh "pwd"
           sh "pip3 install -r requirements.txt"
           sh "python3 send_message.py '${env.BRANCH_NAME}' '${currentBuild.fullDisplayName}' '${BUILD_URL}/logText/progressiveText?start=0' 'FAILED' '${BUILD_NUMBER}'"
       }
