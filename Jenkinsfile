@@ -5,7 +5,6 @@ pipeline {
     dockerImage = ''
     WEBEX_TEAMS_ACCESS_TOKEN = credentials('WEBEX_TEAMS_ACCESS_TOKEN')
     WEBEX_TEAMS_ROOM_ID = credentials('WEBEX_TEAMS_ROOM_ID')
-    JENKINS_TOKEN = credentials('JENKINS_TOKEN')
   }
 
   agent any
