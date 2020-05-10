@@ -11,7 +11,7 @@ This license is free, enables our customers and partners to do everything they n
 - [Installation on Kubernetes](#installation-on-kubernetes)
     - [Jenkins Setup](#jenkins-setup)
     - [Sample App](#sample-app)
-- [Demo Pipeline](#demo-pipeline)
+- [Summary](#summary)
 <!-- ToC -->
 
 # Installation on Kubernetes
@@ -56,6 +56,6 @@ After we access the application via browser we are met with the following:
 ![alt text](./images/sample-app.PNG "Sample app")
 
 
-## Demo Pipeline
+## Summary
 
 Now that everything is up and ready, the Jenkins will continuously check the repository every minute for any changes (new commits). Jenkins will trigger a CI/CD pipeline if there is a new commit.
