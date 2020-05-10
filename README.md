@@ -44,7 +44,7 @@ Now that we have deployed the Jenkins, we have to add certain credentials into t
 
 After you have added the necessary credentials, the deployment is almost done. The next step is to open Blue Ocean plugin and follow the steps to add the CI/CD pipeline.
 
-![alt text](https://github.com/zcrnivec/demo-pipeline/blob/master/images/add-pipeline.png "Add pipeline")
+![alt text](./images/add-pipeline.PNG "Add pipeline")
 
 ## Sample App
 Use the following command to find out the IP:PORT of sample application:
@@ -53,7 +53,7 @@ kubectl get services -o wide
 ```
 After we access the application via browser we are met with the following:
 
-![alt text](https://github.com/zcrnivec/demo-pipeline/blob/master/images/sample-app.png "Sample app")
+![alt text](./images/sample-app.PNG "Sample app")
 
 
 ## Demo Pipeline
